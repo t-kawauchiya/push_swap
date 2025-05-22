@@ -1,0 +1,3 @@
+[submodule "ftprintf"]
+	path = ftprintf
+	url = git@github.com:t-kawauchiya/ftprintf.git
