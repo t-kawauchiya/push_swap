@@ -2,3 +2,5 @@
 *.a
 */*.a
 
+push_swap*
+

@@ -1,7 +1,7 @@
 NAME = push_swap
 
 INCDIR = include/
-LIB = lib
+LIB = lib/
 
 SRC_DIR = src/
 SRC_FILES = main.c operation.c compress.c parse.c resolve.c \
@@ -21,12 +21,14 @@ CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(FT_PRINTF)
+$(NAME): $(OBJ) $(LIB)$(FT_PRINTF) $(FT_PRINTF_DIR)$(FT_PRINTF) 
 	$(CC) $(CFLAGS) $(SRC) -L$(LIB) -lftprintf -g -o $(NAME)
 
-$(FT_PRINTF):
-	@make -C $(FT_PRINTF_DIR)
+$(LIB)$(FT_PRINTF): $(FT_PRINTF_DIR)$(FT_PRINTF)
 	@cp $(FT_PRINTF_DIR)$(FT_PRINTF) $(LIB)
+
+$(FT_PRINTF_DIR)$(FT_PRINTF):
+	@make -C $(FT_PRINTF_DIR)
 
 %.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $< -o $@ -g
@@ -38,10 +40,13 @@ test: all clean
 
 clean:
 	@rm -f $(OBJ)
+	@make -C $(FT_PRINTF_DIR) clean
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f $(lib)
 	@rm -rf *.dSYM
+	@make -C $(FT_PRINTF_DIR) fclean
 
 re: fclean all
 
