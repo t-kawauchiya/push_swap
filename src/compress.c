@@ -6,16 +6,16 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:47:53 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/04/13 17:27:57 by TakeshiKawa      ###   ########.fr       */
+/*   Updated: 2025/05/24 12:17:07 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/push_swap.h"
+#include "../include/push_swap.h"
 
 static void	sort(int **arrp, int size);
 static int	binary_search_int(int *arr, int size, int target);
 
-int	*compress(int *input, int size)
+int	*coordinate_compress(int *input, int size)
 {
 	int	*ret;
 	int	i;
@@ -31,6 +31,7 @@ int	*compress(int *input, int size)
 		ret[i] = binary_search_int(cp, size, input[i]);
 		i++;
 	}
+	free(cp);
 	return (ret);
 }
 

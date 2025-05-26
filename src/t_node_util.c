@@ -6,20 +6,20 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 15:40:52 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/04/13 17:47:32 by TakeshiKawa      ###   ########.fr       */
+/*   Updated: 2025/05/22 16:51:13 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/push_swap.h"
+#include "../include/push_swap.h"
 
-t_node	*ft_nodenew(int index)
+t_node	*ft_nodenew(int value)
 {
 	t_node	*tmp;
 
 	tmp = malloc(sizeof(t_node));
 	if (tmp)
 	{
-		tmp->index = index;
+		tmp->value = value;
 		tmp->next = NULL;
 	}
 	return (tmp);

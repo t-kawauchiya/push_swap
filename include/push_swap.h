@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:52:50 by takawauc          #+#    #+#             */
-/*   Updated: 2025/04/12 18:15:57 by TakeshiKawa      ###   ########.fr       */
+/*   Updated: 2025/05/24 12:18:33 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_node	t_node;
 
 struct					s_node
 {
-	int					index;
+	int					value;
 	t_node				*next;
 	t_node				*prev;
 };
@@ -46,11 +46,16 @@ typedef struct s_stack
 	int					size;
 }						t_stack;
 
+t_stack					*parse_input(char **argv, int argc);
 t_node					*ft_nodenew(int index);
 int						ft_nodesize(t_node *node);
 t_node					*ft_nodelast(t_node *ori);
 void					ft_nodeclear(t_node **node, void (*del)(void *));
 
-int						*compress(int *input, int size);
+void					resolve(t_stack *stack_a, t_stack *stack_b);
+
+int						*coordinate_compress(int *input, int size);
 void					ft_free_stack(t_stack *stack);
+
+void	error_exit(int status);
 #endif

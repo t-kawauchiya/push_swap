@@ -6,11 +6,11 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 15:40:52 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/04/12 20:44:24 by TakeshiKawa      ###   ########.fr       */
+/*   Updated: 2025/05/22 16:51:26 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/push_swap.h"
+#include "../include/push_swap.h"
 
 void	ft_free_stack(t_stack *stack)
 {
