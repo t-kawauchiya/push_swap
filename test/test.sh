@@ -5,6 +5,7 @@
 set -euo pipefail
 PUSH_SWAP_BIN="./push_swap"
 TMP_DIR="./test/tmp_test"
+CHECKER="./checker_Mac"
 rm -rf "$TMP_DIR" && mkdir -p "$TMP_DIR"
 
 # ---------- 1. helper functions ----------
@@ -15,8 +16,11 @@ run_case() {
 
   printf 'Test %s:\n' "$title"
   local operation_count
-  operation_count=$(${PUSH_SWAP_BIN} "${args[@]}" | tee /dev/tty | wc -l)
-  printf ' - operation count: %d\n' "$operation_count"
+
+  ${PUSH_SWAP_BIN} ${args[@]} | tee /dev/tty | ${CHECKER} ${args[@]}
+
+  # operation_count=$(${PUSH_SWAP_BIN} "${args[@]}" | tee /dev/tty | wc -l)
+  # printf ' - operation count: %d\n' "$operation_count"
 }
 
 # run_expect_fail() {
@@ -40,10 +44,10 @@ run_case "element num = 2, {10000, 20000}"\
   "10000" "20000"
 run_case "element num = 2, {20000, 10000}"\
   "20000" "10000"
-run_case "element num = 3, sorted"\
+run_case "element num = 3, {1,2,3}"\
   "10000" "20000" "30000"
 run_case "element num = 3, {1,3,2}"\
-  "2" "3" "1"
+  "1" "3" "2"
 run_case "element num = 3, {2,1,3}"\
   "2" "1" "3"
 run_case "element num = 3, {2,3,1}"\

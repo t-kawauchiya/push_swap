@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 20:43:12 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/05/26 17:33:41 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/05/27 23:34:59 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	main(int argc, char **argv)
 	stack_a = parse_input(argv, argc);
 	if (!stack_a)
 		error_exit(1);
-	print_stack_elems(stack_a);
+	// print_stack_elems(stack_a);
 	stack_b = malloc(sizeof(t_stack *));
-	resolve(stack_a, stack_b);
+	resolve(*stack_a, *stack_b);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 	return (0);
