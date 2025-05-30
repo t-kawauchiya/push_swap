@@ -1,4 +1,5 @@
 */*.o
+a.out
 *.a
 */*.a
 push_swap*
