@@ -6,7 +6,7 @@
 /*   By: takawauc <takawauc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:25:39 by takawauc          #+#    #+#             */
-/*   Updated: 2025/05/29 21:48:41 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/01 09:45:24 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,22 @@ static int		*safe_atoi(char *str);
 static int		iarr_contains(int *iarr, int size, int ip);
 static t_stack	*conv_iarr_to_stack(int *iarr, int size);
 
-t_stack	*parse_input(char **argv, int argc)
+t_stack	*parse_input(char **argv)
 {
 	int		*iarr;
 	t_stack	*ret;
+	char	**expanded_argv;
+	int		expanded_argc;
 
-	iarr = get_conpressed_iarr(argv + 1, argc - 1);
+	expanded_argv = expand_args(argv + 1);
+	expanded_argc = 0;
+	while (expanded_argv[expanded_argc])
+		expanded_argc++;
+	iarr = get_conpressed_iarr(expanded_argv, expanded_argc);
 	if (!iarr)
 		return (NULL);
-	ret = conv_iarr_to_stack(iarr, argc - 1);
+	ret = conv_iarr_to_stack(iarr, expanded_argc);
+	free(expanded_argv);
 	free(iarr);
 	return (ret);
 }
