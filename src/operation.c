@@ -6,86 +6,100 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 23:15:48 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/05/27 00:11:01 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/01 09:46:50 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static void	swap(t_stack stack);
-static void	rotate(t_stack stack);
-static void	rrotate(t_stack stack);
-static void	push(t_stack stacka, t_stack stackb);
+static void	print_operation(t_operation op);
+static void	swap(t_stack *stack);
+static void	rotate(t_stack *stack, int is_reverse);
+static void	push(t_stack *stacka, t_stack *stackb);
 
-void	do_operation(t_stack stack_a, t_stack stack_b, char *op)
+void	do_operation(t_stack *stack_a, t_stack *stack_b, t_operation op)
 {
-	ft_putendl_fd(op, STDOUT_FILENO);
-	if (ft_strncmp(op, "sa", 2) || ft_strncmp(op, "ss", 2))
+	// ft_printf("sa:");
+	// print_stack_elems(stack_a);
+	// ft_printf("sb:");
+	// print_stack_elems(stack_b);
+	print_operation(op);
+	if (op == sa || op == ss)
 		swap(stack_a);
-	if (ft_strncmp(op, "sb", 2) || ft_strncmp(op, "ss", 2))
+	if (op == sb || op == ss)
 		swap(stack_b);
-	if (ft_strncmp(op, "ra", 2) || ft_strncmp(op, "rr", 2))
-		rotate(stack_a);
-	if (ft_strncmp(op, "rb", 2) || ft_strncmp(op, "rr", 2))
-		rotate(stack_b);
-	if (ft_strncmp(op, "rra", 3) || ft_strncmp(op, "rrr", 3))
-		rrotate(stack_a);
-	if (ft_strncmp(op, "rrb", 3) || ft_strncmp(op, "rrr", 3))
-		rrotate(stack_b);
-	if (ft_strncmp(op, "pa", 2))
-		push(stack_a, stack_b);
-	if (ft_strncmp(op, "pb", 2))
+	if (op == ra || op == rr)
+		rotate(stack_a, 0);
+	if (op == rb || op == rr)
+		rotate(stack_b, 0);
+	if (op == rra || op == rrr)
+		rotate(stack_a, 1);
+	if (op == rrb || op == rrr)
+		rotate(stack_b, 1);
+	if (op == pa)
 		push(stack_b, stack_a);
+	if (op == pb)
+		push(stack_a, stack_b);
 }
 
-static void	push(t_stack stacka, t_stack stackb)
+static void	print_operation(t_operation op)
+{
+	if (op == sa)
+		ft_printf("sa\n");
+	else if (op == sb)
+		ft_printf("sb\n");
+	else if (op == ss)
+		ft_printf("ss\n");
+	else if (op == ra)
+		ft_printf("ra\n");
+	else if (op == rb)
+		ft_printf("rb\n");
+	else if (op == rr)
+		ft_printf("rr\n");
+	else if (op == rra)
+		ft_printf("rra\n");
+	else if (op == rrb)
+		ft_printf("rrb\n");
+	else if (op == rrr)
+		ft_printf("rrr\n");
+	else if (op == pa)
+		ft_printf("pa\n");
+	else if (op == pb)
+		ft_printf("pb\n");
+	return ;
+}
+
+static void	push(t_stack *stacka, t_stack *stackb)
 {
 	t_node	*pushed;
 
-	pushed = stacka.head;
-	stacka.head = stacka.head->next;
-	stackb.head->prev = pushed;
-	pushed->next = stackb.head;
-	stackb.head = pushed;
+	pushed = ft_stackpophead(stacka);
+	ft_stackaddhead(stackb, pushed);
 }
 
-static void	swap(t_stack stack)
+static void	swap(t_stack *stack)
 {
 	t_node	*first;
 	t_node	*second;
-	t_node	*third;
 
-	first = stack.head;
-	second = stack.head->next;
-	third = stack.head->next->next;
-	first->next = third;
-	first->prev = second;
-	second->next = first;
-	second->prev = NULL;
-	third->prev = first;
-	stack.head = second;
+	first = ft_stackpophead(stack);
+	second = ft_stackpophead(stack);
+	ft_stackaddhead(stack, first);
+	ft_stackaddhead(stack, second);
 }
 
-static void	rotate(t_stack stack)
+static void	rotate(t_stack *stack, int is_reverse)
 {
 	t_node	*poped;
 
-	poped = stack.head;
-	stack.head->next->prev = NULL;
-	stack.tail->next = poped;
-	poped->prev = stack.tail;
-	stack.tail = poped;
-	stack.tail->next = NULL;
-}
-
-static void	rrotate(t_stack stack)
-{
-	t_node	*poped;
-
-	poped = stack.tail;
-	stack.tail->prev->next = NULL;
-	stack.head->prev = poped;
-	poped->next = stack.head;
-	stack.head = poped;
-	stack.head->prev = NULL;
+	if (is_reverse)
+	{
+		poped = ft_stackpoptail(stack);
+		ft_stackaddhead(stack, poped);
+	}
+	else
+	{
+		poped = ft_stackpophead(stack);
+		ft_stackaddtail(stack, poped);
+	}
 }
