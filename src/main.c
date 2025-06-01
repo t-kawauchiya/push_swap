@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 20:43:12 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/05/27 23:34:59 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/01 12:42:16 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	error_exit(int status);
 void	print_stack_elems(t_stack *stack);
+int		is_sorted(t_stack sa);
 
 int	main(int argc, char **argv)
 {
@@ -22,12 +23,16 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	stack_a = parse_input(argv, argc);
+	stack_a = parse_input(argv);
 	if (!stack_a)
 		error_exit(1);
-	// print_stack_elems(stack_a);
 	stack_b = malloc(sizeof(t_stack *));
-	resolve(*stack_a, *stack_b);
+	if (!stack_b)
+	{
+		ft_free_stack(stack_a);
+		error_exit(1);
+	}
+	solve(*stack_a, *stack_b);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 	return (0);
@@ -51,4 +56,18 @@ void	print_stack_elems(t_stack *stack)
 		tmp = tmp->next;
 	}
 	ft_printf("\n");
+}
+
+int	is_sorted(t_stack sa)
+{
+	t_node	*tmp;
+
+	tmp = sa.head;
+	while (tmp)
+	{
+		if (tmp->next && tmp->value > tmp->next->value)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }
