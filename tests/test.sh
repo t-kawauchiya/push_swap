@@ -3,9 +3,9 @@
 # push_swap_test
 
 PUSH_SWAP_BIN="./push_swap"
-TMP_DIR="./test/tmp_test"
+TMP_DIR="./tests/tmp_test"
 CHECKER="./checker"
-PERFORMANCE_TEST="./test/performance_test.sh"
+PERFORMANCE_TEST="./tests/performance_test.sh"
 rm -rf "$TMP_DIR" && mkdir -p "$TMP_DIR"
 
 # ---------- 1. helper functions ----------
@@ -61,8 +61,7 @@ run_case "element num = 4"\
   "10000" "20000" "30000" "40000"
 run_case "element num = 4"\
   "101" "1" "111" "11" "10"
-
-bash PERFORMANCE_TEST 
+bash $PERFORMANCE_TEST
 
 # ---------- 5. invalid-command case ----------
 # run_expect_fail "invalid command (exit ~127)"\

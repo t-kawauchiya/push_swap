@@ -9,7 +9,7 @@ SRC_FILES = main.c operation.c compress.c parse.c solve.c  \
 						radix_sort.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(SRC:.c=.o)
-TEST_DIR = test/
+TEST_DIR = tests/
 TEST = test.sh
 
 HEADER=./include/push_swap.h
