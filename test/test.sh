@@ -2,10 +2,10 @@
 
 # push_swap_test
 
-set -euo pipefail
 PUSH_SWAP_BIN="./push_swap"
 TMP_DIR="./test/tmp_test"
-CHECKER="./checker_Mac"
+CHECKER="./checker"
+PERFORMANCE_TEST="./test/performance_test.sh"
 rm -rf "$TMP_DIR" && mkdir -p "$TMP_DIR"
 
 # ---------- 1. helper functions ----------
@@ -15,12 +15,8 @@ run_case() {
   local args=("${@}")
 
   printf 'Test %s:\n' "$title"
-  local operation_count
 
   ${PUSH_SWAP_BIN} ${args[@]} | tee /dev/tty | ${CHECKER} ${args[@]}
-
-  # operation_count=$(${PUSH_SWAP_BIN} "${args[@]}" | tee /dev/tty | wc -l)
-  # printf ' - operation count: %d\n' "$operation_count"
 }
 
 # run_expect_fail() {
@@ -38,10 +34,15 @@ STATUS=0
 # ---------- 3. normal equivalence-class cases ----------
 run_case "element num = 1"\
   "10000"
-# run_case "input error"\
-#   "a1"
+run_case "input error: {\"a1\"}"\
+  "a1"
 run_case "element num = 2, {10000, 20000}"\
   "10000" "20000"
+run_case "expand args: {\"10000 20000\"}"\
+  "10000 20000"
+run_case "expand args: {\"  10000 \n20000  \"}"\
+  "  10000 
+20000  "
 run_case "element num = 2, {20000, 10000}"\
   "20000" "10000"
 run_case "element num = 3, {1,2,3}"\
@@ -58,6 +59,10 @@ run_case "element num = 3, {3,2,1}"\
   "3" "2" "1"
 run_case "element num = 4"\
   "10000" "20000" "30000" "40000"
+run_case "element num = 4"\
+  "101" "1" "111" "11" "10"
+
+bash PERFORMANCE_TEST 
 
 # ---------- 5. invalid-command case ----------
 # run_expect_fail "invalid command (exit ~127)"\

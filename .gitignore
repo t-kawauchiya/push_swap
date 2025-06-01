@@ -3,5 +3,5 @@ a.out
 *.a
 */*.a
 push_swap*
-checker_Mac
+test/checker
 
