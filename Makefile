@@ -4,8 +4,9 @@ INCDIR = include/
 LIB = lib/
 
 SRC_DIR = src/
-SRC_FILES = main.c operation.c compress.c parse.c resolve.c  \
-						expand_args.c split_with_spaces.c t_node_util.c t_stack_util.c 
+SRC_FILES = main.c operation.c compress.c parse.c solve.c  \
+						expand_args.c split_with_spaces.c t_node_util.c t_stack_util.c \
+						radix_sort.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(SRC:.c=.o)
 TEST_DIR = test/
