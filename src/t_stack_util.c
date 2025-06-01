@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 15:40:52 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/06/01 12:51:44 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/01 16:01:53 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,16 @@ void	ft_free_stack(t_stack *stack)
 {
 	if (stack)
 	{
-    ft_nodeclear(&(stack->head),free);
 		ft_nodeclear(&stack->head, free);
 		free(stack);
 	}
-}
-
-int	ft_stacksize(t_stack stack)
-{
-	return (ft_nodesize(stack.head));
 }
 
 void	ft_stackaddhead(t_stack *stack, t_node *node)
 {
 	int	stsize;
 
-	stsize = ft_stacksize(*stack);
+	stsize = ft_nodesize(stack->head);
 	if (stsize == 0)
 	{
 		stack->head = node;
@@ -49,7 +43,7 @@ void	ft_stackaddtail(t_stack *stack, t_node *node)
 {
 	int	stsize;
 
-	stsize = ft_stacksize(*stack);
+	stsize = ft_nodesize(stack->head);
 	if (stsize == 0)
 	{
 		stack->head = node;
@@ -68,7 +62,7 @@ t_node	*ft_stackpophead(t_stack *stack)
 	t_node	*ret;
 
 	ret = stack->head;
-	if (ft_stacksize(*stack) == 1)
+	if (ft_nodesize(stack->head) == 1)
 	{
 		stack->head = NULL;
 		stack->tail = NULL;
@@ -87,7 +81,7 @@ t_node	*ft_stackpoptail(t_stack *stack)
 	t_node	*ret;
 
 	ret = stack->tail;
-	if (ft_stacksize(*stack) == 1)
+	if (ft_nodesize(stack->head) == 1)
 	{
 		stack->head = NULL;
 		stack->tail = NULL;

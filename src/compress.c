@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:47:53 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/05/24 12:17:07 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/01 14:50:54 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,16 @@ int	*coordinate_compress(int *input, int size)
 	int	*cp;
 
 	cp = malloc(size * sizeof(int));
+	if (!cp)
+		return (NULL);
 	ft_memcpy(cp, input, size * sizeof(int));
 	sort(&cp, size);
 	ret = malloc(size * sizeof(int));
+	if (!ret)
+	{
+		free(cp);
+		return (NULL);
+	}
 	i = 0;
 	while (i < size)
 	{
@@ -40,22 +47,22 @@ static void	sort(int **arrp, int size)
 	int	*arr;
 	int	i;
 	int	tmp;
-	int	updated;
+	int	is_updated;
 
 	arr = *arrp;
-	updated = 1;
-	while (updated)
+	is_updated = 1;
+	while (is_updated)
 	{
 		i = 0;
-		updated = 0;
-		while (i < size - 1)
+		is_updated = 0;
+		while (arr[i] && arr[i + 1] && i < size - 1)
 		{
 			if (arr[i] > arr[i + 1])
 			{
 				tmp = arr[i];
 				arr[i] = arr[i + 1];
 				arr[i + 1] = tmp;
-				updated = 1;
+				is_updated = 1;
 			}
 			i++;
 		}

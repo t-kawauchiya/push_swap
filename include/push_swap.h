@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:52:50 by takawauc          #+#    #+#             */
-/*   Updated: 2025/06/01 12:41:17 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/01 15:55:02 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_node					*ft_nodenew(int index);
 int						ft_nodesize(t_node *node);
 t_node					*ft_nodelast(t_node *ori);
 void					ft_nodeclear(t_node **node, void (*del)(void *));
-int						ft_stacksize(t_stack stack);
 void					ft_stackaddhead(t_stack *stack, t_node *node);
 void					ft_stackaddtail(t_stack *stack, t_node *node);
 t_node					*ft_stackpophead(t_stack *stack);

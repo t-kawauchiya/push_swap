@@ -6,7 +6,7 @@
 /*   By: takawauc <takawauc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 21:35:49 by takawauc          #+#    #+#             */
-/*   Updated: 2025/05/30 16:54:52 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/01 15:00:31 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static char	**get_expanded_args(char **argv, int size)
 		i = 0;
 		while (strarr[i])
 			ret[cnt++] = strarr[i++];
-		argv++;
 		free(strarr);
+		argv++;
 	}
 	return (ret);
 }
@@ -64,7 +64,7 @@ static int	count_words(char *str)
 	ret = 0;
 	if (!str)
 		return (ret);
-	if (*str)
+	if (!ft_isspace(*str))
 		ret++;
 	while (*str && *(str + 1))
 	{

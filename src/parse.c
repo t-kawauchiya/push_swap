@@ -6,7 +6,7 @@
 /*   By: takawauc <takawauc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:25:39 by takawauc          #+#    #+#             */
-/*   Updated: 2025/06/01 09:45:24 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/01 15:15:41 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,17 @@ t_stack	*parse_input(char **argv)
 	int		expanded_argc;
 
 	expanded_argv = expand_args(argv + 1);
+	if (!expanded_argv)
+		return (NULL);
 	expanded_argc = 0;
 	while (expanded_argv[expanded_argc])
 		expanded_argc++;
 	iarr = get_conpressed_iarr(expanded_argv, expanded_argc);
 	if (!iarr)
+	{
+		free(expanded_argv);
 		return (NULL);
+	}
 	ret = conv_iarr_to_stack(iarr, expanded_argc);
 	free(expanded_argv);
 	free(iarr);
@@ -75,17 +80,18 @@ static t_stack	*conv_iarr_to_stack(int *iarr, int size)
 	ret = malloc(sizeof(t_stack));
 	if (!ret)
 		return (NULL);
-	tmp = ft_nodenew(iarr[0]);
-	ret->head = tmp;
-	i = 1;
+	i = 0;
 	while (i < size)
 	{
-		tmp->next = ft_nodenew(iarr[i]);
-		tmp->next->prev = tmp;
-		tmp = tmp->next;
+		tmp = ft_nodenew(iarr[i]);
+		if (!tmp)
+		{
+			ft_free_stack(ret);
+			return (NULL);
+		}
+		ft_stackaddtail(ret, tmp);
 		i++;
 	}
-	ret->tail = tmp;
 	return (ret);
 }
 

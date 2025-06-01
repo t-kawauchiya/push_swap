@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 23:15:48 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/06/01 09:46:50 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/01 14:52:20 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,6 @@ static void	push(t_stack *stacka, t_stack *stackb);
 
 void	do_operation(t_stack *stack_a, t_stack *stack_b, t_operation op)
 {
-	// ft_printf("sa:");
-	// print_stack_elems(stack_a);
-	// ft_printf("sb:");
-	// print_stack_elems(stack_b);
 	print_operation(op);
 	if (op == sa || op == ss)
 		swap(stack_a);
