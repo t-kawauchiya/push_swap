@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:52:50 by takawauc          #+#    #+#             */
-/*   Updated: 2025/06/01 15:55:02 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/03 01:47:38 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,9 @@ int						is_sorted(t_stack sa);
 void					radix_sort(t_stack sa, t_stack sb);
 
 void					print_stack_elems(t_stack *stack);
+void					push_to_sorted_stack(t_stack *stack_a, t_stack *stack_b,
+							int cnt);
+int						get_index_to_insert(t_stack stack, t_node *node);
+int						get_top_index(t_stack stack);
 
 #endif
