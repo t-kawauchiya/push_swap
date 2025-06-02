@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 15:40:52 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/06/01 15:50:26 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/01 21:30:53 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,20 @@ void	ft_nodeclear(t_node **node, void (*del)(void *))
 		del(last->next);
 	}
 	del(last);
+}
+
+int	ft_getmaxvalue(t_node *node)
+{
+	int		max;
+	t_node	*tmp;
+
+	max = INT_MIN;
+	tmp = node;
+	while (tmp)
+	{
+		if (tmp->value > max)
+			max = tmp->value;
+		tmp = tmp->next;
+	}
+	return (max);
 }
