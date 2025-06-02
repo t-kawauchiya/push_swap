@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 16:47:53 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/06/01 14:50:54 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/02 12:41:33 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	sort(int **arrp, int size)
 	{
 		i = 0;
 		is_updated = 0;
-		while (arr[i] && arr[i + 1] && i < size - 1)
+		while (i < size - 1)
 		{
 			if (arr[i] > arr[i + 1])
 			{
