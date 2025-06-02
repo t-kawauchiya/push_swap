@@ -60,7 +60,55 @@ run_case "element num = 3, {3,2,1}"\
 run_case "element num = 4"\
   "10000" "20000" "30000" "40000"
 run_case "element num = 4"\
-  "101" "1" "111" "11" "10"
+  "1" "2" "3" "4"
+run_case "element num = 4"\
+  "1" "3" "2" "4"
+run_case "element num = 4"\
+  "1" "3" "4" "2"
+run_case "element num = 4"\
+  "1" "4" "2" "3"
+run_case "element num = 4"\
+  "1" "4" "3" "2"
+run_case "element num = 4"\
+  "2" "1" "3" "4"
+run_case "element num = 4"\
+  "2" "1" "4" "3"
+run_case "element num = 4"\
+  "2" "3" "1" "4"
+run_case "element num = 4"\
+  "2" "3" "4" "1"
+run_case "element num = 4"\
+  "2" "4" "1" "3"
+run_case "element num = 4"\
+  "2" "4" "3" "1"
+run_case "element num = 4"\
+  "3" "1" "2" "4"
+run_case "element num = 4"\
+  "3" "1" "4" "2"
+run_case "element num = 4"\
+  "3" "2" "1" "4"
+run_case "element num = 4"\
+  "3" "2" "4" "1"
+run_case "element num = 4"\
+  "3" "4" "1" "2"
+run_case "element num = 4"\
+  "3" "4" "2" "1"
+run_case "element num = 4"\
+  "4" "1" "2" "3"
+run_case "element num = 4"\
+  "4" "1" "3" "2"
+run_case "element num = 4"\
+  "4" "2" "1" "3"
+run_case "element num = 4"\
+  "4" "2" "3" "1"
+run_case "element num = 4"\
+  "4" "3" "1" "2"
+run_case "element num = 4"\
+  "4" "3" "2" "1"
+run_case "element num = 5"\
+  "2" "4" "3" "1" "0"
+run_case "element num = 6"\
+  "4" "1" "5" "3" "2" "0"
 bash $PERFORMANCE_TEST
 
 # ---------- 5. invalid-command case ----------
