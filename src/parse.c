@@ -6,13 +6,13 @@
 /*   By: takawauc <takawauc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:25:39 by takawauc          #+#    #+#             */
-/*   Updated: 2025/06/01 15:15:41 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/06/03 00:57:50 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static int		*get_conpressed_iarr(char **strarr, int size);
+static int		*get_compressed_iarr(char **strarr, int size);
 static int		*safe_atoi(char *str);
 static int		iarr_contains(int *iarr, int size, int ip);
 static t_stack	*conv_iarr_to_stack(int *iarr, int size);
@@ -30,7 +30,7 @@ t_stack	*parse_input(char **argv)
 	expanded_argc = 0;
 	while (expanded_argv[expanded_argc])
 		expanded_argc++;
-	iarr = get_conpressed_iarr(expanded_argv, expanded_argc);
+	iarr = get_compressed_iarr(expanded_argv, expanded_argc);
 	if (!iarr)
 	{
 		free(expanded_argv);
@@ -42,7 +42,7 @@ t_stack	*parse_input(char **argv)
 	return (ret);
 }
 
-static int	*get_conpressed_iarr(char **strarr, int size)
+static int	*get_compressed_iarr(char **strarr, int size)
 {
 	int	i;
 	int	*compressed;
