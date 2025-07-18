@@ -6,7 +6,7 @@
 /*   By: takawauc <takawauc@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 15:14:47 by takawauc          #+#    #+#             */
-/*   Updated: 2025/06/03 01:49:36 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/07/18 15:55:07 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ int			get_index_to_insert(t_stack stack, t_node *node);
 int			get_top_index(t_stack stack);
 static int	is_index_to_insert(int tailval, int headval, int val);
 
-void	push_to_sorted_stack(t_stack *stack_a, t_stack *stack_b, int cnt)
+void	push_to_sorted_stack(t_stack *stack_a, t_stack *stack_b, int toins)
 {
 	int			i;
 	t_operation	op;
 
 	op = ra;
-	if (2 * cnt > ft_nodesize(stack_a->head))
+	if (2 * toins > ft_nodesize(stack_a->head))
 	{
 		op = rra;
-		cnt = ft_nodesize(stack_a->head) - cnt;
+		toins = ft_nodesize(stack_a->head) - toins;
 	}
 	i = 0;
-	while (i < cnt)
+	while (i < toins)
 	{
 		do_operation(stack_a, stack_b, op);
 		i++;
@@ -65,12 +65,6 @@ int	get_index_to_insert(t_stack stack, t_node *node)
 	return (ret);
 }
 
-static int	is_index_to_insert(int tailval, int headval, int val)
-{
-	return ((tailval < val && val < headval) || ((tailval < val
-				|| headval > val) && (tailval > headval)));
-}
-
 int	get_top_index(t_stack stack)
 {
 	t_node	*tmp;
@@ -88,4 +82,10 @@ int	get_top_index(t_stack stack)
 		tmp = tmp->next;
 	}
 	return (-1);
+}
+
+static int	is_index_to_insert(int tailval, int headval, int val)
+{
+	return ((tailval < val && val < headval) || ((tailval < val
+				|| headval > val) && (tailval > headval)));
 }

@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 15:40:52 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/06/01 21:30:53 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:04:15 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,27 @@ t_node	*ft_nodenew(int value)
 	t_node	*tmp;
 
 	tmp = malloc(sizeof(t_node));
-	if (tmp)
-	{
-		tmp->value = value;
-		tmp->next = NULL;
-		tmp->prev = NULL;
-	}
+	if (!tmp)
+		return (NULL);
+	tmp->value = value;
+	tmp->next = NULL;
+	tmp->prev = NULL;
 	return (tmp);
 }
 
 int	ft_nodesize(t_node *node)
 {
-	int		cnt;
-	t_node	*tmp;
+	int		size;
+	t_node	*cur;
 
-	tmp = node;
-	cnt = 0;
-	while (tmp)
+	cur = node;
+	size = 0;
+	while (cur)
 	{
-		cnt++;
-		tmp = tmp->next;
+		cur = cur->next;
+		size++;
 	}
-	return (cnt);
+	return (size);
 }
 
 t_node	*ft_nodelast(t_node *node)
@@ -49,25 +48,24 @@ t_node	*ft_nodelast(t_node *node)
 		return (NULL);
 	tmp = node;
 	while (tmp->next)
-	{
 		tmp = tmp->next;
-	}
 	return (tmp);
 }
 
 void	ft_nodeclear(t_node **node, void (*del)(void *))
 {
-	t_node	*last;
+	t_node	*cur;
+	t_node	*next;
 
-	last = ft_nodelast(*node);
-	if (!last)
+	if (!node || !del)
 		return ;
-	while (last->prev)
+	cur = *node;
+	while (cur)
 	{
-		last = last->prev;
-		del(last->next);
+		next = cur->next;
+		del(cur);
+		cur = next;
 	}
-	del(last);
 }
 
 int	ft_getmaxvalue(t_node *node)

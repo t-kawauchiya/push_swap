@@ -6,7 +6,7 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 13:52:50 by takawauc          #+#    #+#             */
-/*   Updated: 2025/06/03 01:47:38 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/07/17 21:11:20 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void					do_operation(t_stack *stack_a, t_stack *stack_b,
 
 char					**expand_args(char **argv);
 
-char					**split_with_spaces(const char *s);
 void					solve(t_stack stack_a, t_stack stack_b);
 
 int						*coordinate_compress(int *input, int size);
@@ -78,5 +77,10 @@ void					push_to_sorted_stack(t_stack *stack_a, t_stack *stack_b,
 							int cnt);
 int						get_index_to_insert(t_stack stack, t_node *node);
 int						get_top_index(t_stack stack);
+
+// strarr_util
+int						get_strarr_size(char **strarr);
+int						copy_strarr(char **source, char **dest, int size);
+void					*ft_free_allay(char **ret, size_t i);
 
 #endif

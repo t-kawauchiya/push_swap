@@ -6,14 +6,14 @@
 /*   By: TakeshiKawauchiya <TakeshiKawauchiya@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 20:43:12 by TakeshiKawa       #+#    #+#             */
-/*   Updated: 2025/06/01 15:01:12 by takawauc         ###   ########.fr       */
+/*   Updated: 2025/07/17 15:32:49 by takawauc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
 void	error_exit(int status);
-void	print_stack_elems(t_stack *stack);
+void	debug_print_stack_elems(t_stack *stack);
 int		is_sorted(t_stack sa);
 
 int	main(int argc, char **argv)
@@ -44,7 +44,7 @@ void	error_exit(int status)
 	exit(status);
 }
 
-void	print_stack_elems(t_stack *stack)
+void	debug_print_stack_elems(t_stack *stack)
 {
 	t_node	*tmp;
 
@@ -58,14 +58,14 @@ void	print_stack_elems(t_stack *stack)
 	ft_printf("\n");
 }
 
-int	is_sorted(t_stack sa)
+int	is_sorted(t_stack stack)
 {
 	t_node	*tmp;
 
-	tmp = sa.head;
-	while (tmp)
+	tmp = stack.head;
+	while (tmp && tmp->next)
 	{
-		if (tmp->next && tmp->value > tmp->next->value)
+		if (tmp->value > tmp->next->value)
 			return (0);
 		tmp = tmp->next;
 	}

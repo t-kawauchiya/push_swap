@@ -5,8 +5,8 @@ LIB = lib/
 
 SRC_DIR = src/
 SRC_FILES = main.c operation.c compress.c parse.c solve.c  \
-						expand_args.c split_with_spaces.c t_node_util.c t_stack_util.c \
-						radix_sort.c solve_util.c
+						expand_args.c t_node_util.c t_stack_util.c \
+						radix_sort.c solve_util.c strarr_util.c
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(SRC:.c=.o)
 TEST_DIR = tests/
@@ -18,12 +18,12 @@ FT_PRINTF_DIR = ftprintf/
 FT_PRINTF = libftprintf.a
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIB)$(FT_PRINTF) $(FT_PRINTF_DIR)$(FT_PRINTF) 
-	$(CC) $(CFLAGS) $(SRC) -L$(LIB) -lftprintf -g -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -L$(LIB) -lftprintf -o $(NAME)
 
 $(LIB)$(FT_PRINTF): $(FT_PRINTF_DIR)$(FT_PRINTF)
 	@cp $(FT_PRINTF_DIR)$(FT_PRINTF) $(LIB)
